@@ -1,1 +1,1 @@
-# s2r2-ig.guthub.io
+# s2r2-ig.github.io
