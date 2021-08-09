@@ -1,6 +1,6 @@
 # Transferring Dexterous Manipulation from GPU Simulation to a Remote Real-World TriFinger
 
-<iframe src="https://www.youtube.com/embed/Bd0sZ980PeM?controls=0" title="Presentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/Bd0sZ980PeM?controls=0" title="Presentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
