@@ -1,5 +1,7 @@
 # Transferring Dexterous Manipulation from GPU Simulation to a Remote Real-World TriFinger
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bd0sZ980PeM?controls=0" title="Presentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ![](assets/system.png)
 
 ## Abstract
@@ -8,4 +10,3 @@ We present a system for learning a challenging dexterous manipulation task invol
 
 The paper can be found [here](https://openreview.net/forum?id=faXIE2kpfrv). The codebase for the project will be released soon!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Bd0sZ980PeM?controls=0" title="Presentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
