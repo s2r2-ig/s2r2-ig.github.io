@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:site_name" content="Differentiable Cutting Simulator">
+    <meta property="og:title" content="DiSECt - Differentiable Cutting Simulator">
+    <meta property="og:description"
+        content="A differentiable simulator for robotic cutting, enabling efficient inference of simulation parameters, and optimization of cutting motions.">
+    <meta property="og:url" content="https://diff-cutting-sim.github.io">
+    <meta property="og:image" content="https://diff-cutting-sim.github.io/teaser.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DiSECt - Differentiable Cutting Simulator">
+    <meta name="twitter:description"
+        content="A differentiable simulator for robotic cutting, enabling efficient inference of simulation parameters, and optimization of cutting motions.">
+    <meta name="twitter:creator" content="@eric_heiden">
+    <meta name="twitter:url" content="https://diff-cutting-sim.github.io">
+    <meta name="twitter:image:src" content="https://diff-cutting-sim.github.io/teaser.jpg">
+
+    <meta name="description"
+        content="A differentiable simulator for robotic cutting, enabling efficient inference of simulation parameters, and optimization of cutting motions.">
+    <meta name="author" content="Eric Heiden, Miles Macklin, Yashraj Narang, Animesh Garg, Dieter Fox, Fabio Ramos">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <title>DiSECt - Differentiable Cutting Simulator</title>
+
+    <style>
+        div.authors p:first-of-type {
+            font-size: 1.4em;
+        }
+
+        div.authors p {
+            text-align: center;
+        }
+
+        div.affiliations p {
+            text-align: center;
+        }
+
+        h1,
+        h2 {
+            margin: 1em 0;
+            text-align: center;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        #video {
+            text-align: center;
+        }
+
+        div.container {
+            padding-top: 60px;
+        }
+
+        .navbar {
+            padding: 0.4em 2em;
+        }
+
+        #abstract p {
+            text-align: justify;
+        }
+
+        #results .label {
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            font-weight: bold;
+        }
+
+        #results h3,
+        #results h5 {
+            margin-top: 2em;
+        }
+
+        .btn {
+            width: 75%;
+        }
+
+        .actions .col {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <a class="navbar-brand" href="index.html#">DiSECt - Differentiable Cutting Simulator</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end position-relative" id="navbarToggle">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#" target="_self">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#abstract" target="_self">Abstract</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#video" target="_self">Video</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#results" target="_self">Results</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#acknowledgements" target="_self">Acknowledgements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#outlook" target="_self">Outlook</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <h1><b>DiSECt</b>: A Differentiable Simulation Engine <br /> for Autonomous Robotic Cutting</h1>
+
+        <h2>RSS 2021 - <span style="color:#f60">Best Student Paper</span></h2>
+
+        <div class="row authors">
+            <div class="col">
+                <p>
+                    <a href="https://eric-heiden.com">Eric Heiden</a><sup>1</sup>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <a href="http://mmacklin.com">Miles Macklin</a><sup>2</sup>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <a href="https://research.nvidia.com/person/yashraj-narang">Yashraj Narang</a><sup>2</sup>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <a href="https://homes.cs.washington.edu/~fox">Dieter Fox</a><sup>2,3</sup>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <a href="https://animesh.garg.tech">Animesh Garg</a><sup>2,4</sup>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <a href="https://fabioramos.github.io">Fabio Ramos</a><sup>2,5</sup>
+                </p>
+            </div>
+        </div>
+        <div class="row affiliations">
+            <div class="col">
+                <p><sup>1</sup>University of Southern California</p>
+            </div>
+            <div class="col">
+                <p><sup>2</sup>NVIDIA</p>
+            </div>
+            <div class="col">
+                <p><sup>3</sup>University of Washington</p>
+            </div>
+            <div class="col">
+                <p><sup>4</sup>University of Toronto &amp;<br /> Vector Institute</p>
+            </div>
+            <div class="col">
+                <p><sup>5</sup>University of Sydney</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="abstract">
+        <div class="row">
+            <h2>Abstract</h2>
+            <!-- <p class="col-sm-10 fs-5"> -->
+            <p class="col">
+                Robotic cutting of soft materials is critical for applications such as food processing, household
+                automation, and surgical manipulation. As in other areas of robotics, simulators can facilitate
+                controller
+                verification, policy learning, and dataset generation. Moreover, <em>differentiable</em> simulators can
+                enable gradient-based optimization, which is invaluable for calibrating simulation parameters and
+                optimizing
+                controllers. In this work, we present DiSECt - the first differentiable simulator for cutting soft
+                materials. The simulator augments the finite element method (FEM) with a continuous contact model based
+                on
+                signed distance fields (SDF), as well as a continuous damage model that inserts springs on opposite
+                sides of
+                the cutting plane and allows them to weaken until zero stiffness to model crack formation. Through
+                various
+                experiments, we evaluate the performance of the simulator. We first show that the simulator can be
+                calibrated to match resultant forces and deformation fields from a state-of-the-art commercial solver
+                and
+                real-world cutting datasets, with generality across cutting velocities and object instances. We then
+                show
+                that Bayesian inference can be performed efficiently by leveraging the differentiability of the
+                simulator,
+                estimating posteriors over hundreds of parameters in a fraction of the time of black-box methods.
+                Finally,
+                we illustrate that control parameters in the simulation can be optimized to minimize cutting forces via
+                lateral slicing motions.
+            </p>
+            <!-- <div class="card col align-self-center border-0">
+                <a href="https://arxiv.org/abs/2105.12244">
+                    <img src="paper-thumbnail.png" class="card-img-top" alt="DiSECt paper" />
+                    <div class="card-body" align="center">
+                        <h5 class="card-title">Paper on ArXiv</h5>
+                    </div>
+                </a>
+            </div> -->
+        </div>
+
+        <div class="row actions">
+            <div class="col"><a href="https://arxiv.org/abs/2105.12244" target="_blank"
+                    class="btn btn-primary ">Paper</a></div>
+            <div class="col"><a href="index.html#" class="btn btn-primary col">Code (coming soon!)</a></div>
+            <div class="col"><a
+                    href="https://developer.nvidia.com/blog/nvidia-research-disect-a-differentiable-simulation-engine-for-autonomous-robotic-cutting/"
+                    target="_blank" class="btn btn-primary col">Blog post</a></div>
+            <div class="col"><a href="index.html#" data-bs-toggle="modal" data-bs-target="#citationModal"
+                    class="btn btn-primary col">Citation</a></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="citationModal" tabindex="-1" role="dialog" aria-labelledby="citationModalTitle">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="citationModalLongTitle">Citation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <pre>
+@INPROCEEDINGS{heiden2021disect, 
+    AUTHOR    = {Eric Heiden AND Miles Macklin AND Yashraj S Narang AND Dieter Fox AND Animesh Garg AND Fabio Ramos}, 
+    TITLE     = {{DiSECt: A Differentiable Simulation Engine for Autonomous Robotic Cutting}}, 
+    BOOKTITLE = {Proceedings of Robotics: Science and Systems}, 
+    YEAR      = {2021}, 
+    ADDRESS   = {Virtual}, 
+    MONTH     = {July}, 
+    DOI       = {10.15607/RSS.2021.XVII.067} 
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="summary">
+        <div class="row">
+            <div class="col">
+                <video autoplay muted loop class="img-fluid">
+                    <source src="potato_knife_force_profile.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="col">
+                <video autoplay muted loop class="img-fluid">
+                    <source src="apple_springs_damage.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="lead">
+                    Knife force simulation of cutting a potato. DiSECt allows the efficient calibration of simulation
+                    parameters to match actual force measurements from a real robot cutting biomaterials.
+                </p>
+            </div>
+            <div class="col">
+                <p class="lead">
+                    Deformable objects are simulated via the Finite Element Method (FEM). To simulate crack propagation
+                    and damage, we insert springs (shown in cyan) between the cut elements of the mesh which are
+                    weakened as the knife exerts contact forces.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="video">
+        <h2>Video</h2>
+        <div class="row justify-content-md-center">
+            <div class="ratio ratio-16x9 w-75">
+                <iframe src="https://www.youtube.com/embed/bN4yqHhfAfQ" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="results">
+        <h2>Additional Results</h2>
+
+        <div class="row justify-content-md-center">
+            <video autoplay muted loop class="img-fluid w-75">
+                <source src="real_estimation/real_apple_progress.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="lead w-75">Evolution of the knife force profile while the simulation parameters are calibrated via
+                gradient-based optimization. The ground-truth trajectory has been obtained from a real force sensor
+                attached to a robot cutting a real apple.</p>
+        </div>
+
+        <h3>Mesh Generalization via Optimal Transport</h3>
+
+        <p class="lead">We use Optimal Transport to transfer optimized cutting spring parameters between different
+            meshes of the same material. In this example, the parameters are transferred from a prism mesh to a
+            half-cylinder mesh with potato material properties. Groundtruth knife forces stem from a state-of-the-art
+            commercial simulator.</p>
+
+        <div class="row">
+            <div class="col">
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd.png" />
+                <p>Knife force profile of the transported cutting spring parameters (orange) against the ground-truth
+                    knife force profile (black) from a commercial simulator on a half-cylinder mesh with potato material
+                    properties.</p>
+            </div>
+            <div class="col">
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_cost.png" />
+                <p>Cost matrix (pair-wise squared distances) between 2D spring coordinates from the source mesh (prism)
+                    and the target mesh (cylinder).</p>
+            </div>
+            <div class="col">
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_metric_emd.png" />
+                <p>Correspondences between source and target cutting spring coordinates found by Optimal Transport using
+                    the Earth Mover's Distance metric.</p>
+            </div>
+        </div>
+
+        <h5>Transported cutting spring parameters:</h5>
+        <div class="row">
+            <div class="col" align="center">
+                <p class="label">Cutting spring stiffness</p>
+                <img class="img-fluid"
+                    src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_cut_spring_ke.png" />
+            </div>
+            <div class="col" align="center">
+                <p class="label">Contact normal force stiffness</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_ke.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" align="center">
+                <p class="label">Cutting spring softness</p>
+                <img class="img-fluid"
+                    src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_cut_spring_softness.png" />
+            </div>
+            <div class="col" align="center">
+                <p class="label">Contact friction coefficient</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_mu.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" align="center">
+                <p class="label">Contact damping coefficient</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_kd.png" />
+            </div>
+            <div class="col" align="center">
+                <p class="label">Contact friction stiffness</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_kf.png" />
+            </div>
+        </div>
+
+        <h3>Cutting Motion Optimization</h3>
+
+        <p class="lead">
+            We leverage the end-to-end differentiability of our simulator to optimze a control cost function to find
+            fast, energy-efficient cutting trajectories.
+            By employing hard constraints on the lateral knife motion, a sawing movement emerges:
+        </p>
+
+        <div class="row">
+            <div class="col">
+                <video autoplay muted loop class="img-fluid">
+                    <source src="motions/initial.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p align="center"><b>Initial trajectory (before optimization)</b></p>
+            </div>
+            <div class="col">
+                <video autoplay muted loop class="img-fluid">
+                    <source src="motions/unconstrained.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p align="center"><b>Unconstrained optimization</b></p>
+            </div>
+            <div class="col">
+                <video autoplay muted loop class="img-fluid">
+                    <source src="motions/constrained.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p align="center"><b>Constrained optimization</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="acknowledgements">
+        <h2>Acknowledgements</h2>
+
+        <p class="lead">We thank <a href="http://web.cs.iastate.edu/~jia/">Yan-Bin Jia</a> and <a
+                href="https://www.linkedin.com/in/prajjwalprem">Prajjwal Jamdagni</a> for kindly providing us a
+            dataset of real-world cutting trajectories which we used throughout our experiments. Be sure to also check
+            out their <a href="https://robolab-iastate.github.io/ResearchRoboticCutting/">research on robotic
+                cutting</a>!</p>
+        <p class="lead">Part of the research was supported by a Google Ph.D. Fellowship.</p>
+    </div>
+
+    <div class="container" id="outlook">
+        <div class="row">
+            <div class="col">
+                <video autoplay muted loop class="img-fluid">
+                    <source src="real_cutting.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="col">
+                <h2>Outlook</h2>
+                <p class="lead">In our ongoing work, we are applying DiSECt to real-robot cutting.</p>
+                <p class="lead">We plan to release our source code soon, stay tuned!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light">
+        <div class="container" align="right" style="padding:40px 0">
+            Last updated on July 19, 2021
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
